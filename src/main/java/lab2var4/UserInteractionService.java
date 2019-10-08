@@ -2,8 +2,6 @@ package lab2var4;
 
 import lab2var4.exeptions.ErrorInputExceptions;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -14,7 +12,7 @@ class UserInteractionService {
     private Scanner scanner = new Scanner(System.in);
 
 
-    void showMessage(String message) {
+    public void showMessage(String message) {
         System.out.println(message);
     }
 
@@ -38,13 +36,9 @@ class UserInteractionService {
             throw new ErrorInputExceptions();
     }
 
-    public void readFile(int input) throws FileNotFoundException {
-        File file = new File("Text"+input);
-        Scanner reader = new Scanner(file);
 
-    }
-   public String readUsingFiles(int input) throws IOException {
-        return new String(Files.readAllBytes(Paths.get("D:\\MyJavaProject\\Lab_2\\src\\main\\resources\\Text"+input)));
+   String readUsingFiles(int input) throws IOException {
+        return new String(Files.readAllBytes(Paths.get(".\\src\\main\\resources\\Text"+input)));
     }
 
 }
