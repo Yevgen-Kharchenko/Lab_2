@@ -1,4 +1,4 @@
-package lab2var4;
+package lab2var4.service;
 
 import lab2var4.exeptions.ErrorInputExceptions;
 
@@ -7,17 +7,22 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
-class UserInteractionService {
+public class UserInteractionService {
 
     private Scanner scanner = new Scanner(System.in);
 
 
     public void showMessage(String message) {
+        System.out.printf("\n**************************************************\n%s" +
+                "\n**************************************************\n", message);
+    }
+
+    public void outputResult(String message) {
         System.out.println(message);
     }
 
-    int getUserInput(String message, int max) {
-        System.out.println(message);
+    public int getUserInput(String message, int max) {
+        System.out.printf("\n%s\n", message);
         int i;
         while (true) {
             i = Integer.parseInt(scanner.next());
@@ -37,8 +42,8 @@ class UserInteractionService {
     }
 
 
-   String readUsingFiles(int input) throws IOException {
-        return new String(Files.readAllBytes(Paths.get(".\\src\\main\\resources\\Text"+input)));
+    public String readUsingFiles(int input) throws IOException {
+        return new String(Files.readAllBytes(Paths.get(".\\src\\main\\resources\\Text" + input)));
     }
 
 }

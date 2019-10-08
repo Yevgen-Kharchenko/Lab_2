@@ -1,17 +1,21 @@
-package lab2var4;
+package lab2var4.model;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
 public class Sentence {
+    String getString() {
+        return string;
+    }
+
     private String string;
 
     public Sentence() {
         this.string = "";
     }
 
-    public Sentence(String string) {
+    private Sentence(String string) {
         this.string = string;
     }
 
@@ -19,8 +23,8 @@ public class Sentence {
         return string;
     }
 
-    public List<Sentence> separator (String contents) {
-        StringTokenizer stringTokenizer = new StringTokenizer(contents, "\n:.!?", true);
+    public List<Sentence> separator(String contents) {
+        StringTokenizer stringTokenizer = new StringTokenizer(contents, "\n:.!?\"“”", true);
         String last;
         String current = "";
         List<Sentence> sentences = new ArrayList<>();
@@ -34,7 +38,6 @@ public class Sentence {
                 sentences.add(sentence);
             }
         }
-    return sentences;
+        return sentences;
     }
-
 }
