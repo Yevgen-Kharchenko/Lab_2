@@ -7,21 +7,22 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
-public class UserInteractionService {
+class UserInteractionService {
 
+    private static final String PATH = ".\\src\\main\\resources\\Text";
     private Scanner scanner = new Scanner(System.in);
 
 
-    public void showMessage(String message) {
+    void showMessage(String message) {
         System.out.printf("\n**************************************************\n%s" +
                 "\n**************************************************\n", message);
     }
 
-    public void outputResult(String message) {
+    void outputResult(String message) {
         System.out.println(message);
     }
 
-    public int getUserInput(String message, int max) {
+    int getUserInput(String message, int max) {
         System.out.printf("\n%s\n", message);
         int i;
         while (true) {
@@ -29,7 +30,7 @@ public class UserInteractionService {
             try {
                 validateInput(i, max);
                 break;
-            } catch (RuntimeException e) {
+            } catch (ErrorInputExceptions e) {
                 showMessage(e.getMessage());
             }
         }
@@ -42,8 +43,13 @@ public class UserInteractionService {
     }
 
 
-    public String readUsingFiles(int input) throws IOException {
-        return new String(Files.readAllBytes(Paths.get(".\\src\\main\\resources\\Text" + input)));
+    String readUsingFiles(int input) {
+        try {
+            return new String(Files.readAllBytes(Paths.get(PATH + input)));
+        } catch (IOException e) {
+            e.getMessage();
+        }
+        return "";
     }
 
 }

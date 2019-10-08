@@ -5,17 +5,21 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 public class Sentence {
+
+    private static final String DELIMITER = "\n:.!?\"“”";
+    private static final String MARK = "?";
+
     String getString() {
         return string;
     }
 
-    private String string;
+    private String string = "";
 
     public Sentence() {
-        this.string = "";
+
     }
 
-    private Sentence(String string) {
+    Sentence(String string) {
         this.string = string;
     }
 
@@ -23,8 +27,8 @@ public class Sentence {
         return string;
     }
 
-    public List<Sentence> separator(String contents) {
-        StringTokenizer stringTokenizer = new StringTokenizer(contents, "\n:.!?\"“”", true);
+    public List<Sentence> separate(String contents) {
+        StringTokenizer stringTokenizer = new StringTokenizer(contents, DELIMITER, true);
         String last;
         String current = "";
         List<Sentence> sentences = new ArrayList<>();
@@ -33,7 +37,7 @@ public class Sentence {
             last = current;
             current = stringTokenizer.nextToken().trim();
 
-            if (current.equals("?")) {
+            if (current.equals(MARK)) {
                 Sentence sentence = new Sentence(last + current);
                 sentences.add(sentence);
             }
